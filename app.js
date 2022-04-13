@@ -10,7 +10,7 @@ import bodyParser from 'body-parser';
 const app = express();
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => res.send('Hello Social3 Server!'));
+// app.get('/', (req, res) => res.send('Hello Social3 Server!'));
 app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/posts', postsRouter);

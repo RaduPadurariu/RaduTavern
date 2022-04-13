@@ -15,6 +15,18 @@ app.use('/api/auth', authRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/posts', postsRouter);
 
+// heroku special env
+console.log(process.env.NODE_ENV);
+if (process.env.NODE_ENV === 'production') {
+	// npm run build for react app
+	app.use(express.static('client/build'));
+
+	app.get('*', (req, res) => {
+		req.sendFile(path.resolve(__dirname, 'build', 'index.html'));
+	});
+}
+
+
 // connect to Mongo DB
 // console.log(process.env.MONGO_URI);
 // mongoose.connect(process.env.MONGO_URI, () => console.log('Connected to Mongo DB'))
